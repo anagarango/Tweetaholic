@@ -4,6 +4,7 @@ const app = express()
 const path = require('path')
 const { posts } = require('./database')
 const { reportPosts } = require('./database')
+// const posts = path.join(__dirname,'views/posts.ejs')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json())

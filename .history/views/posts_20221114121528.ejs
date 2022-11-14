@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed&family=Laila:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+    <style>
+        .postBox{
+          border:black solid 1px;
+          border-radius: 10px;
+          padding: 15px;
+          margin-bottom: 20px;
+        }
+
+        .report{
+          background-color: #D34A4A;
+          color:white;
+          padding: 10px;
+          border-radius: 15px;
+        }
+
+        .reported{
+          color:red
+        }
+    </style>
+</head>
+
+<body>
+  <ul>
+  <% notes.forEach(notes => { %>
+    <div class="postBox">
+      <h2><%= notes.title %></h2>
+      <p><%= notes.body %></p>
+      <p><%= notes.time %></p>
+      <form action="<=% notes.id %>/delete" method="post">
+        <button class="report" type="submit" href="/notes/:id/report" onclick="SendPostReporting('<%= notes.id %>', '<%= notes.name %>')">Report Button</button>
+      </form>
+      <button onclick="SendPostReporting('<%= notes.id %>')">Hello</button>
+    </div>
+
+  <% }) %>
+
+  <div>
+    <h2 class="reported"></h2>
+  </div>
+</ul>
+ 
+  
+  
+
+
+
+    <script>
+        function SendPostReporting(postId, postName) {
+            fetch(`http://localhost:3000/reportPost?id=${postId}`).then(async (data) => {
+                document.querySelector(".reported").innerText = ("Post from " + postName + " has been deleted")
+                const results = await data.json();
+
+                if (results.fact){
+                    // answerDiv.classList.add("visible")
+                    rightWrong.innerText = ("Correct")
+                    nextButton.classList.add("visibleNextButton")
+                    nextButton.classList.remove("defaultNextButton")
+                    instructorFace.classList.remove("defaultNextButton")
+                    instructorFace.classList.add("visibleNextButton")
+                    // scoreNum.innerText = results.finalScore
+                    instructorFace.src = results.image
+                    console.log(document.getElementById("nextButton").href)
+        
+
+
+                } else {
+                    // answerDiv.classList.add("visible")
+                    rightWrong.innerText = ("Wrong")
+                    nextButton.classList.add("visibleNextButton")
+                    nextButton.classList.remove("defaultNextButton")
+                    instructorFace.classList.remove("defaultNextButton")
+                    instructorFace.classList.add("visibleNextButton")
+                    // scoreNum.innerText = results.finalScore
+                    instructorFace.src = results.image
+                    console.log(document.getElementById("nextButton").href)
+
+                }
+                if(document.getElementById("nextButton").href === "http://localhost:3000/quiz?q=10"){
+                    document.getElementById("nextButton").href = "CHANGE THIS TO WHATEVER PAGE ITS SUPPOSED TO ROUTE TO FOR THE FINAL SCORE"
+                }
+            })
+            return
+        }
+    </script>
+</body>
+
+</html>

@@ -4,6 +4,7 @@ const app = express()
 const path = require('path')
 const { posts } = require('./database')
 const { reportPosts } = require('./database')
+const posts = path.join(__dirname,'views/posts.ejs')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json())
@@ -26,10 +27,10 @@ app.get('/reported', (req, res) => {
   })
 })
 
-// app.post('/notes/:id/report', (req, res) => {
-//   // const id = +req.params.id
-//   // res.render('posts')
-// })
+app.post('/notes/:id/report', (req, res) => {
+  // const id = +req.params.id
+  // res.render('posts')
+})
 
 const PORT = 3000
 app.listen(PORT, () => {
