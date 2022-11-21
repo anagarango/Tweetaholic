@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .postBox{
+          border:black solid 1px;
+          border-radius: 10px;
+          padding: 15px;
+          margin-bottom: 20px;
+        }
+
+        .report{
+          background-color: #D34A4A;
+          color:white;
+          padding: 10px;
+          border-radius: 15px;
+        }
+
+        .reported{
+          color:red
+        }
+    </style>
+</head>
+
+<body>
+    <h1>These posts have been reported, please review if they must be deleted</h1>
+  <% reportPosts.forEach(reportPosts => { %>
+    <div class="postBox">
+      <h2><%= reportPosts.title %></h2>
+      <p><%= reportPosts.body %></p>
+      <p><%= reportPosts.time %></p>
+      <form action="post/report/<%= posts.id %>" method="post">
+        <button class="report" type="submit" href="/reportPosts/:id/report">Delete</button>
+      </form>
+    </div>
+
+  <% }) %>
+
+  <div>
+    <h2 class="reported"></h2>
+  </div>
+ 
+  
+  
+
+
+
+    <!-- <script>
+        function Delete(postId, postName) {
+            fetch(`http://localhost:3000/reportPost?id=${postId}`).then(async (data) => {
+                document.querySelector(".reported").innerText = ("Post from " + postName + " has been reported")
+                const results = await data.json();
+                console.log(postName)
+
+                if (results.fact){
+                    rightWrong.innerText = ("Correct")
+                    nextButton.classList.add("visibleNextButton")
+                    nextButton.classList.remove("defaultNextButton")
+                    instructorFace.classList.remove("defaultNextButton")
+                    instructorFace.classList.add("visibleNextButton")
+                    instructorFace.src = results.image
+                    console.log(document.getElementById("nextButton").href)
+        
+
+
+                } else {
+                    rightWrong.innerText = ("Wrong")
+                    nextButton.classList.add("visibleNextButton")
+                    nextButton.classList.remove("defaultNextButton")
+                    instructorFace.classList.remove("defaultNextButton")
+                    instructorFace.classList.add("visibleNextButton")
+                    instructorFace.src = results.image
+                    console.log(document.getElementById("nextButton").href)
+
+                }
+            })
+            return
+        }
+    </script> -->
+</body>
+
+</html>

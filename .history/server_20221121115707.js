@@ -25,20 +25,18 @@ app.get('/reported', (req, res) => {
     reportPosts,
   })
 })
-app.post('/post/report/:id', (req, res) => {
+app.post('post/delete/', (req, res) => {
   const id = +req.params.id
   const result = posts.filter(posts => posts.id == id);
   var message = result[0].name
   reportPosts.push(result[0])
-  res.redirect("/posts")
-  // res.json({message:message})
+  res.json({message:message})
 })
 
 
-app.post('/post/delete/:id'), (req, res) => {
+app.post('post/delete/:id'), (req, res) => {
   const id = +req.params.id
   database.DeletePost(id)
-  res.redirect("/reported")
 
 }
 
