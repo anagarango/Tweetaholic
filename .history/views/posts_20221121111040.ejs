@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed&family=Laila:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+    <style>
+        .postBox{
+          border:black solid 1px;
+          border-radius: 10px;
+          padding: 15px;
+          margin-bottom: 20px;
+        }
+
+        .report{
+          background-color: #D34A4A;
+          color:white;
+          padding: 10px;
+          border-radius: 15px;
+        }
+
+        .reported{
+          color:red
+        }
+    </style>
+</head>
+
+<body>
+  <% posts.forEach(posts => { %>
+    <div class="postBox">
+      <h2><%= posts.title %></h2>
+      <p><%= posts.body %></p>
+      <p><%= posts.time %></p>
+      <form action="post/report/<%= posts.id %>" method="post">
+        <button class="report" type="submit">Report Button</button>
+      </form>
+      <!-- <button onclick="SendPostReporting('<%= posts.id %>', '<%= posts.name %>')">Hello</button> -->
+    </div>
+  <% }) %>
+
+  <div>
+    <h2 class="reported"></h2>
+  </div>
+ 
+  
+  
+
+
+
+    <script>
+        // function SendPostReporting(id) {
+            fetch(`http://localhost:3000/post/report/${id}`).then(async (data) => {
+                // document.querySelector(".reported").innerText = ("Post from " + postName + " has been reported")
+                const results = await data.json();
+                console.log(results)
+              
+            //     if (results.fact){
+            //         rightWrong.innerText = ("Correct")
+            //         nextButton.classList.add("visibleNextButton")
+            //         nextButton.classList.remove("defaultNextButton")
+            //         instructorFace.classList.remove("defaultNextButton")
+            //         instructorFace.classList.add("visibleNextButton")
+            //         instructorFace.src = results.image
+            //         console.log(document.getElementById("nextButton").href)
+        
+
+
+            //     } else {
+            //         rightWrong.innerText = ("Wrong")
+            //         nextButton.classList.add("visibleNextButton")
+            //         nextButton.classList.remove("defaultNextButton")
+            //         instructorFace.classList.remove("defaultNextButton")
+            //         instructorFace.classList.add("visibleNextButton")
+            //         instructorFace.src = results.image
+            //         console.log(document.getElementById("nextButton").href)
+
+            //     }
+            })
+            // return
+        // }
+    </script>
+</body>
+
+</html>

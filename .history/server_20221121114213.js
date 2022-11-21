@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const app = express()
 const path = require('path')
 const { posts, reportPosts } = require('./database')
-const database = require('./database')
+const database = require('da')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json())
@@ -47,8 +47,7 @@ app.post('/post/report/:id', (req, res) => {
 
 app.post('/:id/delete'), (req, res) => {
   const id = +req.params.id
-  database.DeletePost(id)
-  
+  database.DeletePost
 }
 
 const PORT = 4000

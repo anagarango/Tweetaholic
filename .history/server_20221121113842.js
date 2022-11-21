@@ -3,7 +3,6 @@ const bodyParser = require('body-parser')
 const app = express()
 const path = require('path')
 const { posts, reportPosts } = require('./database')
-const database = require('./database')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json())
@@ -36,8 +35,8 @@ app.post('/post/report/:id', (req, res) => {
   //   posts,
   //   message
   // })
-  res.redirect("/posts")
-  res.json({message:message})
+  // res.json({message:message})
+  res.redirect
 })
 
 // app.post('/notes/:id/report', (req, res) => {
@@ -47,8 +46,6 @@ app.post('/post/report/:id', (req, res) => {
 
 app.post('/:id/delete'), (req, res) => {
   const id = +req.params.id
-  database.DeletePost(id)
-  
 }
 
 const PORT = 4000

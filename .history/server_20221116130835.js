@@ -3,7 +3,6 @@ const bodyParser = require('body-parser')
 const app = express()
 const path = require('path')
 const { posts, reportPosts } = require('./database')
-const database = require('./database')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json())
@@ -28,28 +27,16 @@ app.get('/reported', (req, res) => {
 app.post('/post/report/:id', (req, res) => {
   const id = +req.params.id
   const result = posts.filter(posts => posts.id == id);
-  var message = result[0].name
   reportPosts.push(result[0])
-  // console.log(reportPosts)
-  // console.log(message)
-  // res.render('posts.ejs', {
-  //   posts,
-  //   message
-  // })
-  res.redirect("/posts")
-  res.json({message:message})
+  console.log(report)
+  res.send("Hello")
+  
 })
 
 // app.post('/notes/:id/report', (req, res) => {
 //   // const id = +req.params.id
 //   // res.render('posts')
 // })
-
-app.post('/:id/delete'), (req, res) => {
-  const id = +req.params.id
-  database.DeletePost(id)
-  
-}
 
 const PORT = 4000
 app.listen(PORT, () => {

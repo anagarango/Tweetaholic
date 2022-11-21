@@ -48,7 +48,6 @@ app.post('/post/report/:id', (req, res) => {
 app.post('/:id/delete'), (req, res) => {
   const id = +req.params.id
   database.DeletePost(id)
-  
 }
 
 const PORT = 4000
