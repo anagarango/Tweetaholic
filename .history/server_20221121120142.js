@@ -30,7 +30,6 @@ app.post('/post/report/:id', (req, res) => {
   const result = posts.filter(posts => posts.id == id);
   var message = result[0].name
   reportPosts.push(result[0])
-  res.redirect("/posts")
   // res.json({message:message})
 })
 

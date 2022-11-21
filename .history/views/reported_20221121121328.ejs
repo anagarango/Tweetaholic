@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <style>
         .postBox{
           border:black solid 1px;
@@ -28,20 +27,29 @@
 </head>
 
 <body>
-  <% posts.forEach(posts => { %>
+    <h1>These posts have been reported, please review if they must be deleted</h1>
+  <% reportPosts.forEach(reportPosts => { %>
     <div class="postBox">
-      <h2><%= posts.title %></h2>
-      <p><%= posts.body %></p>
-      <p><%= posts.time %></p>
-      <form action="post/report/<%= posts.id %>" method="post">
-        <button class="report" type="submit">Report Button</button>
+      <h2><%= reportPosts.title %></h2>
+      <p><%= reportPosts.body %></p>
+      <p><%= reportPosts.time %></p>
+      <form action="post/delete/<%= reportPosts.id %>" method="post">
+        <button class="report" type="submit">Delete</button>
       </form>
     </div>
+
   <% }) %>
 
   <div>
     <h2 class="reported"></h2>
   </div>
+ 
+  
+  
+
+
+
+   
 </body>
 
 </html>

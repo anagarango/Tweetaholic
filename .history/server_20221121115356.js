@@ -30,15 +30,24 @@ app.post('/post/report/:id', (req, res) => {
   const result = posts.filter(posts => posts.id == id);
   var message = result[0].name
   reportPosts.push(result[0])
-  res.redirect("/posts")
-  // res.json({message:message})
+  // console.log(reportPosts)
+  // console.log(message)
+  // res.render('posts.ejs', {
+  //   posts,
+  //   message
+  // })
+  // res.redirect("/posts")
+  res.json({message:message})
 })
 
+// app.post('/notes/:id/report', (req, res) => {
+//   // const id = +req.params.id
+//   // res.render('posts')
+// })
 
-app.post('/post/delete/:id'), (req, res) => {
+app.post('/:id/delete'), (req, res) => {
   const id = +req.params.id
   database.DeletePost(id)
-  res.redirect("/reported")
 
 }
 
