@@ -1,1 +1,0 @@
-functioon dele
