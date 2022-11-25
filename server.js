@@ -4,13 +4,13 @@ const app = express()
 const path = require('path')
 const { posts, reportPosts } = require('./database')
 const database = require('./database')
-const api = require('./api')
+// const api = require('./api')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(express.static('public')); // static files middleware
 app.set("view engine", "ejs");
-app.use('/api', api)
+// app.use('/api', api)
 
 app.use(express.static(__dirname + '/public'))
 
