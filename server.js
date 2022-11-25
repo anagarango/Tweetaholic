@@ -1,21 +1,63 @@
 const express = require("express")
+require('dotenv').config() //loads ENV Variables
 const bodyParser = require('body-parser')
 const app = express()
 const path = require('path')
-const { posts, reportPosts } = require('./database')
+const methodOverride = require("method-override")
+const { posts, reportPosts, } = require('./database')
 const database = require('./database')
-const api = require('./api')
+const morgan = require('morgan')
+const mongoose = require('mongoose')
+let twoot = require('./models/posts')
 
+// DB connection
+const DATABASE_URL = process.env.DATABASE_URL
+const CONFIG = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }
+
+// Establish Connection
+mongoose.connect(DATABASE_URL, CONFIG)
+
+// Events for when connection opens/disconnects/errors
+mongoose.connection
+.on("open", () => console.log("Connected to Mongoose 💀💀💀"))
+.on("close", () => console.log("Disconnected from Mongoose"))
+.on("error", (error) => console.log(error))
+
+// Middleware
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(express.static('public')); // static files middleware
 app.set("view engine", "ejs");
-app.use('/api', api)
+app.use(express.static(__dirname + '/public')) //serves public folders
+app.use(morgan("tiny")) //logging
+app.use(methodOverride("_method")) //overrides built in reqs from forms
 
-app.use(express.static(__dirname + '/public'))
+// Routes
+app.get('/', async (req, res) => {
+  
+  const post = await twoot.find({})
 
-app.get('/', (req, res) => {
-  res.render('index')
+  res.render('index.ejs', {post})
+
+
+})
+
+// To seed db. Refer to modes/posts for db schema when making creating posts
+app.get('/seed', async (req, res) =>{
+  // await twoot.remove({})
+
+  await twoot.create([{
+    postId: 1,
+    name: 'Ishan',
+    title: 'Hello World',
+    body: 'I need sleep',
+    time: new Date().toLocaleDateString()
+  }])
+
+  res.redirect('/')
 })
 
 app.get('/posts', (req, res) => {
@@ -46,7 +88,7 @@ app.post('/post/delete/:id'), (req, res) => {
 
 }
 
-const PORT = 4000
+const PORT = process.env.PORT
 app.listen(PORT, () => {
   console.log(`The app is running on port ${PORT}`)
 })

@@ -25,4 +25,4 @@ function DeletePost(id){
 }
 exports.DeletePost = DeletePost
 
-module.exports = { posts, reportPosts }
+module.exports = { posts, reportPosts, }
