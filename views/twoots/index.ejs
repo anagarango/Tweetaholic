@@ -8,13 +8,17 @@
     <title>Tweetaholic!</title>
   </head>
   <body>
+    <a class="button" href="/twoot/new">Twoot Your Thoughts</a>
     <h1>Twoot of the Day!</h1>
     <% post.map((o) =>{ %>
+      <div class="postBox">
         <h2><%= o.title %></h2>
         <h2><%= o.name %> </h2>
         <p><%= o.body %> </p>
-        <p><%= o.time %> </p>
+        <p><%= o.createdAt.toLocaleString() %> </p>
+        <a href="twoot/<%= o.id %>">Read More</a>
 
+      </div>
     <%  }) %>
   </body>
 </html>
