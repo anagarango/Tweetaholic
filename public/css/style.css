@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
 html {
   font-family: 'Quicksand', sans-serif;
   box-sizing: border-box;
@@ -6,25 +7,30 @@ html {
 
 body {
   display: block;
+  background-color: #f6f0f0;
 }
 
-.postBox{
+.postBox {
   border-radius: 10px;
-  padding: 15px;
+  padding: 15px 30px 30px 30px;
   margin-bottom: 20px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-left: 400px;
+  margin-right: 400px;
+  background-color: #FFF;
+  box-shadow: rgba(173, 81, 38, 0.15) 0px 5px 10px;
   overflow-wrap: break-word;
+  color: rgb(53, 53, 53);
 }
 
-.report{
+.report {
   background-color: #D34A4A;
-  color:white;
+  color: white;
   padding: 10px;
   border-radius: 15px;
 }
 
-.reported{
-  color:red
+.reported {
+  color: red
 }
 
 button {
@@ -58,9 +64,12 @@ button:not([disabled]):hover {
   background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
   border: 0;
   border-radius: 25px;
+  margin-left: 20px;
+  box-shadow: rgba(173, 81, 38, 0.15) 0px 5px 10px;
   color: #FFFFFF;
   cursor: pointer;
   display: inline-block;
+  position: fixed;
   font-size: 14px;
   padding: 1em;
   outline: transparent;
@@ -97,15 +106,32 @@ a {
 }
 
 .formbtn {
-  margin: 2em;
+  margin: 25px 400px 20px 400px;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  margin: 2em;
+  margin: 25px 400px 20px 400px;
 }
 
-.form > input {
+.form>input {
   margin-top: 1em;
+  height: 2em;
+}
+
+h1 {
+  margin: 25px 400px 50px 400px;
+  text-align: center;
+  color: #E57168;
+}
+
+.postTitle {
+  font-size: 1.5em;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+}
+
+#body {
+  height: 200px;
 }
