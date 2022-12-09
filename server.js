@@ -4,12 +4,14 @@ const bodyParser = require('body-parser')
 const app = express()
 const path = require('path')
 const methodOverride = require("method-override")
-const { posts, reportPosts, dbConnect} = require('./database')
+const {dbConnect} = require('./database')
 const database = require('./database')
 const morgan = require('morgan')
 const twootRoute = require('./routes/twoot')
+const reportedRouter = require("./routes/reports")
 
 let twoot = require('./models/posts')
+let report = require('./models/reports')
 
 // Connect to DB
 dbConnect()
@@ -23,6 +25,7 @@ app.use(express.static(__dirname + '/public')) //serves public folders
 app.use(morgan("tiny")) //logging
 app.use(methodOverride("_method")) //overrides built in reqs from forms
 app.use('/twoot', twootRoute)
+app.use('/send-report', reportedRouter)
 
 // Routes
 
@@ -36,6 +39,17 @@ app.get('/', async (req, res) => {
   
   
 })
+
+// app.get('/send-report', async (req, res) => {
+  
+//   const reportPost = await report.find({}).sort({
+//     createdAt: 'asc'
+//   })
+  
+//   res.render('reported/reported.ejs', {reportPost})
+  
+  
+// })
 
 // To seed db. Refer to modes/posts for db schema when making creating posts
 app.get('/seed', async (req, res) =>{
@@ -54,33 +68,6 @@ app.get('/seed', async (req, res) =>{
   res.redirect('/')
 })
 
-app.get('/posts', (req, res) => {
-  res.render('posts.ejs', {
-    posts,
-  })
-})
-
-app.get('/reported', (req, res) => {
-  res.render('reported.ejs', {
-    reportPosts,
-  })
-})
-app.post('/post/report/:id', (req, res) => {
-  const id = +req.params.id
-  const result = posts.filter(posts => posts.id == id);
-  var message = result[0].name
-  reportPosts.push(result[0])
-  res.redirect("/posts")
-  // res.json({message:message})
-})
-
-
-app.post('/post/delete/:id'), (req, res) => {
-  const id = +req.params.id
-  database.DeletePost(id)
-  res.redirect("/reported")
-
-}
 
 
 const PORT = process.env.PORT

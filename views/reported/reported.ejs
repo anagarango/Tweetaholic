@@ -8,18 +8,20 @@
     <title>Tweetaholic!</title>
   </head>
   <body>
-    <a class="button" href="/twoot/new">Twoot Your Thoughts</a>
-    <h1>Twoot of the Day!</h1>
-    <% post.map((o) =>{ %>
+    <h1>These posts have been reported, please review them if they contain</h1>
+    <li>Violence and Criminal Behavior</li>
+    <li>Objectionable Content</li>
+    <li>False Information</li>
+    <li>Hate Speech</li>
+    <br>
+    <% thePost.map((o) =>{ %>
       <div class="postBox">
         <h2><%= o.title %></h2>
         <h2><%= o.author %> </h2>
         <p><%= o.body %> </p>
-        <p><%= o.createdAt.toLocaleString() %> </p>
-        <form action="/send-report/<%= o.id %>" method="post">
-          <button class="report" type="submit">Report</button>
+        <form action="/send-report/delete/<%= o.id %>" method="post">
+          <button class="report" type="submit">Delete</button>
         </form>
-        <a href="twoot/<%= o.id %>">Read More</a>
 
       </div>
     <%  }) %>
