@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/css/style.css" rel="stylesheet" type="text/css">
+  <title>Twoot Something!</title>
+</head>
+
+<div class="form">
+  <label class="postTitle" for="title">Edit Your Twoot</label>
+  <input type="hidden" for="id" name="id" id="id" value="<%= twoot.id  %>"></input>
+  <input required for="title" name="title" id="title" value="<%= twoot.title%>"></input>
+
+</div>
+<div class="form">
+  <label class="postTitle" for="body">Changed your mind?</label>
+  <input class="bodyBox" maxlength="200" for="body" name="body" id="body" value="<%= twoot.body%>"></input>
+</div>
+
+<div class="formbtn">
+  <a class="cancelbtn" href="/">Cancel</a>
+  <button type="submit" class="savebtn">Save</button>
+</div>
