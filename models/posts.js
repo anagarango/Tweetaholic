@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const {Schema, model, models} = mongoose
+const { Schema, model, models } = mongoose
 
 var userSchema = new Schema({
   name: String,
@@ -9,10 +9,10 @@ var userSchema = new Schema({
   updatedAt: Date,
   // posts: postsSchema,
   following: [],
-  
+
 })
 
-var postsSchema =  new Schema([
+var postsSchema = new Schema([
   {
     author: mongoose.SchemaTypes.ObjectId,
     title: {
@@ -20,14 +20,10 @@ var postsSchema =  new Schema([
       required: true
     },
     body: String,
-    createdAt: {
-      type: Date,
-      default: Date.now
-    },
-    editedAt: String
-  }]
-  )
 
+  }]
+)
+postsSchema.set('timestamps', true)
 var posts = model('Posts', postsSchema)
 var createNewSchema = models.postsSchema
 
