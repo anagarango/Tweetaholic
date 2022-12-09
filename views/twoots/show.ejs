@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,16 +8,24 @@
   <link href="/css/style.css" rel="stylesheet" type="text/css">
   <title>New Post</title>
 </head>
+
 <body>
   <div>
-    <h1>Twoot Your Twoot</h1>
+    <h1>The Twoot</h1>
     <div class="postBox">
+      <h2>
+        <%= twoot.title %>
+      </h2>
+      <p>
+        <%= twoot.body %>
+      </p>
+      <p>
+        <%= twoot.createdAt.toLocaleString() %>
+      </p>
       <a href="/">Back to Feed</a>
       <a href="/twoots/edit/<%= twoot.id %>">Edit</a>
-      <h2><%= twoot.title %></h2>
-      <p><%= twoot.body %></p>
-      <p><%= twoot.createdAt.toLocaleString() %></p>
     </div>
   </div>
 </body>
+
 </html>
