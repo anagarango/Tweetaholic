@@ -5,7 +5,7 @@ const twoot = require('./../models/posts')
 
 router2.get('/', async (req, res) => {
   
-    const reportPost = await Reported.find({}).sort({
+    const reportPosts = await Reported.find({}).sort({
       createdAt: 'desc'
     })
 
@@ -13,13 +13,13 @@ router2.get('/', async (req, res) => {
         return o.idReport
     })
 
-    let thePost = await twoot.find({
+    let reportPost = await twoot.find({
         '_id': {
             $in: newId
         }
     })
     
-    res.render('reported/reported.ejs', {thePost})
+    res.render('reported/reported.ejs', {reportPost})
 })
 
 
@@ -31,6 +31,10 @@ router2.post('/delete/:id', async (req, res) => {
     res.redirect('/send-report')
 })
 
+// router2.get('/:id', async (req,res)=>{
+//     res.json({message:"This Post Has Been Reported"})
+// })
+
 router2.post('/:id', async (req,res)=>{
     const reportId = req.params.id
     const post = await twoot.findById(reportId)
@@ -41,10 +45,22 @@ router2.post('/:id', async (req,res)=>{
         // body: post.body,
         createdAt: post.createdAt,
     })
+
+    // let reportPost = await twoot.find({
+    //     '_id': {
+    //         $in: reportId
+    //     }
+    // })
+
+    // console.log(reportPost)
+    
     
     try{
         reportPostsMap = await reportPostsMap.save()
-        res.redirect('/')
+        setTimeout(()=>{
+            res.redirect('/')
+        },3000)
+        
         // if(reportedDatabase.length <= 0){
         //     reportPostsMap = await reportPostsMap.save()
         //     res.render("reported/reported", {reportPost: post})
