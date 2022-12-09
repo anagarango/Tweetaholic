@@ -10,6 +10,7 @@
   <body>
     <a class="button" href="/twoot/new">Twoot Your Thoughts</a>
     <h1>Twoot of the Day!</h1>
+    <h3 class="reportMessage"></h3>
     <% post.map((o) =>{ %>
       <div class="postBox">
         <h2><%= o.title %></h2>
@@ -24,4 +25,13 @@
       </div>
     <%  }) %>
   </body>
+  <script>
+    var report = document.querySelector(".reportMessage")
+    var form = document.querySelectorAll("button")
+    form.forEach((o)=>{
+        o.addEventListener("click", ()=>{
+          report.innerText = "This Post Has Been Reported"
+        })
+    })
+</script>
 </html>
