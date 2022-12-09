@@ -10,7 +10,7 @@ router2.get('/', async (req, res) => {
       createdAt: 'desc'
     })
 
-    let newId = reportPost.map((o) => {
+    let newId = reportPosts.map((o) => {
         return o.idReport
     })
 
