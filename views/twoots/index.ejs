@@ -18,15 +18,15 @@
       <h2>
         <%= o.title %>
       </h2>
-      <h2>
-        <%= o.author %>
-      </h2>
       <p>
         <%= o.body %>
       </p>
       <p class="dateTime">
         <%= o.createdAt.toLocaleString() %>
       </p>
+      <h6>Author ID:
+        <%= o.author %>
+      </h6>
       <div class="moreButtons">
         <a href="twoot/<%= o.id %>">Read More</a>
         <form action="/send-report/<%= o.id %>" method="post">

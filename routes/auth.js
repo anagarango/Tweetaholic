@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
     try {
         savedUser = await newUser.save()
         console.log(savedUser)
-        res.send(savedUser)
+        res.redirect('/')
 
     } catch (e) {
         console.log(e)
@@ -51,8 +51,9 @@ const verifyUserLogin = async (email, password) => {
             // creating a JWT token
             token = jwt.sign(
                 {
-                    id: userModel._id,
-                    username: userModel.email,
+                    id: user._id,
+                    email: user.email,
+                    name: user.name,
                     type: 'user'
                 },
                 JWT_SECRET,
@@ -81,9 +82,10 @@ router.post('/login', async (req, res) => {
     if (response.status === 'ok') {
         // storing our JWT web token as a cookie in our browser
         res.cookie('token', token, { maxAge: 2 * 60 * 60 * 1000, httpOnly: true });  // maxAge: 2 hours
-        res.redirect('/');
+
+        res.redirect('/')
     } else {
-        res.json(response);
+        res.redirect('/users/signup')
     }
 
 })

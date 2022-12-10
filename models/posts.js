@@ -1,17 +1,6 @@
 const mongoose = require('mongoose')
 const { Schema, model, models } = mongoose
 
-var userSchema = new Schema({
-  name: String,
-  age: Number,
-  email: String,
-  createdAt: Date,
-  updatedAt: Date,
-  // posts: postsSchema,
-  following: [],
-
-})
-
 var postsSchema = new Schema([
   {
     author: mongoose.SchemaTypes.ObjectId,

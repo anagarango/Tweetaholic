@@ -2,20 +2,17 @@ const express = require("express")
 require('dotenv').config() //loads ENV Variables
 const bodyParser = require('body-parser')
 const app = express()
-const path = require('path')
 const methodOverride = require("method-override")
 const { dbConnect } = require('./database')
-const database = require('./database')
 const morgan = require('morgan')
 const twootRoute = require('./routes/twoot')
 const reportedRouter = require("./routes/reports")
 const usersRouter = require('./routes/auth')
 const jwt = require('jsonwebtoken')
 const JWT_SECRET = process.env.jwt
-var cookieParser = require('cookie-parser');
+var cookieParser = require('cookie-parser')
 
 let twoot = require('./models/posts')
-let report = require('./models/reports')
 
 // Connect to DB
 dbConnect()
@@ -28,13 +25,16 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + '/public')) //serves public folders
 app.use(morgan("tiny")) //logging
 app.use(methodOverride("_method")) //overrides built in reqs from forms
-app.use('/twoot', twootRoute)
-app.use('/send-report', reportedRouter)
-app.use('/users', usersRouter)
 app.use(cookieParser())
 
 
 // Routes
+
+app.use('/twoot', twootRoute)
+app.use('/send-report', reportedRouter)
+app.use('/users', usersRouter)
+
+
 const verifyToken = (token) => {
   try {
     const verify = jwt.verify(token, JWT_SECRET)
@@ -54,8 +54,10 @@ app.get('/', async (req, res) => {
     const post = await twoot.find({}).sort({
       createdAt: 'desc'
     })
+    const decode = jwt.decode(token)
+  
+    console.log(decode)
     res.render('twoots/index.ejs', { post })
-
 
   } else {
     res.redirect('/users')
@@ -69,3 +71,4 @@ const PORT = process.env.PORT
 app.listen(PORT, () => {
   console.log(`The app is running on port ${PORT}`)
 })
+

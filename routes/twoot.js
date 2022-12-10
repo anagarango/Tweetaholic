@@ -1,14 +1,19 @@
 const express = require('express')
 const router = express.Router()
 const Twoot = require('./../models/posts')
+const jwt = require('jsonwebtoken')
+const JWT_SECRET = process.env.jwt
+var cookieParser = require('cookie-parser')
+
 
 router.get('/', (req, res) => {
   res.send('TEST')
 
 })
 
-router.get('/new', (req, res) => {
+router.get('/new',  (req, res) => {
 
+  
   res.render('twoots/new', { newtwoot: new Twoot() })
 
 })
@@ -22,7 +27,12 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
 
+  const { token } = req.cookies
+
+  let decode= jwt.decode(token)
+
   let newtwoot = new Twoot({
+    author: decode.id,
     title: req.body.title,
     body: req.body.body,
   })
