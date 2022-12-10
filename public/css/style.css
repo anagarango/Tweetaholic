@@ -27,6 +27,7 @@ body {
   color: white;
   padding: 10px;
   border-radius: 15px;
+  margin-left: 1em;
 }
 
 .reported {
@@ -126,6 +127,15 @@ h1 {
   color: #E57168;
 }
 
+li {
+  padding: 0px 400px 0px 400px;
+  margin: auto;
+  font-weight: 600;
+  font-size: 18px;
+  text-align: left;
+  color: #E57168;
+}
+
 .postTitle {
   font-size: 1.5em;
   font-weight: 600;
@@ -134,4 +144,14 @@ h1 {
 
 #body {
   height: 200px;
+}
+
+.dateTime {
+  font-size: 0.8em;
+  color: #A9A9A9;
+}
+
+.moreButtons {
+  display: flex;
+  justify-content: flex-start;
 }
