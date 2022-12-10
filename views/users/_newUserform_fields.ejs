@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/css/style.css" rel="stylesheet" type="text/css">
+  <title>Join The Twoot!</title>
+</head>
+
+<div class="form">
+  <label class="postTitle" for="email">What's your email?</label>
+  <input class="bodyBox" maxlength="200" for="email" name="email" id="email" value="<%= newUser.email%>"></input>
+</div>
+
+<div class="form">
+  <label class="postTitle" for="name">What's Your Name?</label>
+  <input required for="name" name="name" id="name" value="<%= newUser.name%>"></input>
+
+</div>
+<div class="form">
+  <label class="postTitle" for="password">Set your password</label>
+  <input required for="password" name="password" id="password" value="<%= newUser.password%>"></input>
+
+</div>
+
+<div class="form">
+  <label class="postTitle" for="age">When were you born?</label>
+  <input required for="age" name="age" id="age" value="<%= newUser.age%>"></input>
+
+</div>
+
+
+<div class="formbtn">
+  <a class="cancelbtn" href="/">Cancel</a>
+  <button type="submit" class="savebtn">Save</button>
+</div>
