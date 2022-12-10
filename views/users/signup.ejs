@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="/css/style.css" rel="stylesheet" type="text/css">
+  <link rel="icon" type="image/x-icon" href="../../public/assets/Tweetaholic_Logo.svg">
   <title>New Post</title>
 </head>
+
 <body>
   <div>
     <h1>Join The Twoot!</h1>
-    <form action="/users" method="POST" >
-    <%- include('_newUserform_fields') %>
+    <img class="logo" src="/assets/Tweetaholic_Logo.svg" alt="Tweetaholic Logo" width="200px" height="200px">
+    <form action="/users" method="POST">
+      <%- include('_newUserform_fields') %>
 
     </form>
   </div>
 </body>
+
 </html>
