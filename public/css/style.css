@@ -155,3 +155,11 @@ li {
   display: flex;
   justify-content: flex-start;
 }
+
+.logo {
+  text-align: center;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+
+}

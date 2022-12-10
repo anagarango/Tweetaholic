@@ -55,7 +55,7 @@ app.get('/', async (req, res) => {
       createdAt: 'desc'
     })
     const decode = jwt.decode(token)
-  
+
     console.log(decode)
     res.render('twoots/index.ejs', { post })
 
