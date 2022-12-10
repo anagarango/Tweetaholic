@@ -159,6 +159,7 @@ li {
 .logo {
   text-align: center;
   display: flex;
-  justify-content: center;
   margin: auto;
+  justify-content: center;
+
 }
