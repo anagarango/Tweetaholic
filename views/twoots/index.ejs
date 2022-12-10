@@ -12,6 +12,10 @@
 <body>
   <a class="button" href="/twoot/new">Twoot Your Thoughts</a>
   <h1>Twoot of the Day!</h1>
+  <form action="/" method="post">
+    <button class="report" type="submit">Sign Out</button>
+  </form>
+
   <h3 class="reportMessage"></h3>
   <% post.map((o)=>{ %>
     <div class="postBox">

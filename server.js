@@ -66,6 +66,10 @@ app.get('/', async (req, res) => {
 
 })
 
+app.post('/', (req, res) =>{
+  res.clearCookie('token')
+  res.redirect('/')
+})
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {
